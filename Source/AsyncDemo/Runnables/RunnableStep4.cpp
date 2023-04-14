@@ -3,6 +3,8 @@
 #include "RunnableStep4.h"
 #include "Async/Future.h"
 
+#define TOO_FAST
+
 FRunnableStep4::FRunnableStep4(TPromise<TResult<TArray<int>>>* Promise)
 {
 	this->Promise = Promise;
@@ -46,6 +48,9 @@ uint32 FRunnableStep4::Run()
 			{
 				UE_LOG(LogTemp, Warning, TEXT("Stopped Step 4"))
 				Promise->SetValue(TResult<TArray<int>>{ EResolutionType::STOP_SIGNAL });
+				#ifdef TOO_FAST
+				FPlatformProcess::Sleep(1.0f;)
+				#endif
 				return 1;
 			}
 			if (i % j == 0)
@@ -61,6 +66,9 @@ uint32 FRunnableStep4::Run()
 		}
 	}
 	Promise->SetValue(TResult<TArray<int>>{ EResolutionType::FULL_RUN, PrimeNumbers });
+	#ifdef TOO_FAST
+	FPlatformProcess::Sleep(1.0f;)
+	#endif
 	return 0;
 }
 
