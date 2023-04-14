@@ -70,7 +70,7 @@ void AAsyncLauncher::BasicPromiseExample()
 		UE_LOG(LogTemp, Warning, TEXT("Basic Promise Example Result: %d"), Result)
 	});
 	Promise->SetValue(2 + 2);
-	delete Promise; // NOTE: CAN'T DELETE CAPTURED POINTERS INSIDE OF LAMBDAS
+	delete Promise;
 }
 
 void AAsyncLauncher::ChainedPromiseExample()
